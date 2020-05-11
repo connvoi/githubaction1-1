@@ -11,4 +11,5 @@ jobs:
               env:
                 PROXY_SSH_PRIVATE_KEY: ${{ secrets.PROXY_SSH_PRIVATE_KEY }}
             - name: test ssh
-              run: ssh -vvv -i kyagi_id_rsa_nopass -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no universal@proxy1.ukw.jp 'ssh -i ~/.ssh/id_rsa_nopass universal@dev73.ukw.jp "hostname"'
+              #run: ssh -vvv -i kyagi_id_rsa_nopass -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no universal@proxy1.ukw.jp 'ssh -i ~/.ssh/id_rsa_nopass universal@dev73.ukw.jp "hostname"'
+              run: ssh -i kyagi_id_rsa_nopass -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no universal@proxy1.ukw.jp 'hostname'
