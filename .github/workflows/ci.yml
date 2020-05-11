@@ -6,15 +6,9 @@ jobs:
         name: ssh test for ukenv
         runs-on: ubuntu-latest
         steps:
-            - name: making ssh config
-              run: echo "$SSH_CONFIG" > ssh_config && chmod 600 ssh_config
-              env:
-                SSH_CONFIG: ${{ secrets.SSH_CONFIG }}
             - name: making proxy ssh key
               run: echo "$PROXY_SSH_PRIVATE_KEY" > kyagi_id_rsa_nopass && chmod 600 kyagi_id_rsa_nopass
               env:
                 PROXY_SSH_PRIVATE_KEY: ${{ secrets.PROXY_SSH_PRIVATE_KEY }}
             - name: test ssh
-              run: ssh -vvv -i kyagi_id_rsa_nopass -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $SERVER_NAME 'ssh -i ~/.ssh/id_rsa_nopass universal@dev73.ukw.jp "hostname"'
-              env:
-                SERVER_NAME: ${{ secrets.DEPLOY_SERVER }}
+              run: ssh -vvv -i kyagi_id_rsa_nopass -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no universal@proxy1.ukw.jp 'ssh -i ~/.ssh/id_rsa_nopass universal@dev73.ukw.jp "hostname"'
