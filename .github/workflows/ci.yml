@@ -3,7 +3,7 @@ on: push
 
 jobs:
     build:
-        name: ssh test for ukenv
+        name: ssh test for proxy ssh
         runs-on: ubuntu-latest
         steps:
             - name: making proxy ssh key
