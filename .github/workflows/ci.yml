@@ -19,6 +19,6 @@ jobs:
               env:
                 UK_SSH_PRIVATE_KEY: ${{ secrets.UK_SSH_PRIVATE_KEY }}
             - name: test ssh
-              run: ssh -F ssh_config -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $SERVER_NAME "touch /home/universal/kyagi/testfromgit.log"
+              run: ssh -vvv -F ssh_config -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $SERVER_NAME "touch /home/universal/kyagi/testfromgit.log"
               env:
                 SERVER_NAME: ${{ secrets.DEPLOY_SERVER }}
