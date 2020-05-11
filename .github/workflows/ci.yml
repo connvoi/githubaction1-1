@@ -10,5 +10,9 @@ jobs:
               run: echo "$SSH_PRIVATE_KEY" > key && chmod 600 key
               env:
                 SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            - name: servername
+              run: echo "$SERVER_NAME" >  server
+              env:
+                SERVER_NAME: ${{ secrets.SERVER_NAME }}
             - name: test ssh
-              run: ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no kyagi@35.197.55.117 ’echo test > /home/kyagi/project/actionstest/actions.log’
+              run: ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no kyagi@$SERVER_NAME ’echo OK’
