@@ -1,4 +1,4 @@
-name: Hello, world!!
+name: sshtest 
 on: push
 
 jobs:
@@ -11,4 +11,4 @@ jobs:
               env:
                 SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
             - name: test ssh
-              run: ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ’echo test" > /home/kyagi/project/actionstest/actions.log’
+              run: ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ’echo test > /home/kyagi/project/actionstest/actions.log’
