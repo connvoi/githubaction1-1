@@ -6,12 +6,19 @@ jobs:
         name: ssh test
         runs-on: ubuntu-latest
         steps:
-            - name: making ssh keys
-              run: echo "$SSH_PRIVATE_KEY" > key && chmod 600 key
+            - name: making ssh config
+              run: echo "$SSH_CONFIG" > ssh_config && chmod 600 key
               env:
-                SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+                SSH_CONFIG: ${{ secrets.SSH_CONFIG }}
+            - name: making proxy ssh key
+              run: echo "$PROXY_SSH_PRIVATE_KEY" > kyagi_id_rsa_nopass && chmod 600 key
+              env:
+                PROXY_SSH_PRIVATE_KEY: ${{ secrets.PROXY_SSH_PRIVATE_KEY }}
+            - name: making uk ssh key
+              run: echo "$UK_SSH_PRIVATE_KEY" > kyagi_id_rsa_nopass && chmod 600 key
+              env:
+                UK_SSH_PRIVATE_KEY: ${{ secrets.UK_SSH_PRIVATE_KEY }}
             - name: test ssh
-              run: ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p $SERVER_PORT kyagi@$SERVER_NAME "touch /home/kyagi/test.log"
+              run: ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $SERVER_NAME "touch /home/universal/kyagi/testfromgit.log"
               env:
-                SERVER_NAME: ${{ secrets.SERVER_IP }}
-                SERVER_PORT: ${{ secrets.SERVER_PORT }}
+                SERVER_NAME: ${{ secrets.DEPLOY_SERVER }}
