@@ -14,11 +14,7 @@ jobs:
               run: echo "$PROXY_SSH_PRIVATE_KEY" > kyagi_id_rsa_nopass && chmod 600 kyagi_id_rsa_nopass
               env:
                 PROXY_SSH_PRIVATE_KEY: ${{ secrets.PROXY_SSH_PRIVATE_KEY }}
-            - name: making uk ssh key
-              run: echo "$UK_SSH_PRIVATE_KEY" > uk_id_rsa_nopass && chmod 600 uk_id_rsa_nopass
-              env:
-                UK_SSH_PRIVATE_KEY: ${{ secrets.UK_SSH_PRIVATE_KEY }}
             - name: test ssh
-              run: ssh -vvv -1 -F ssh_config -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $SERVER_NAME "touch /home/universal/kyagi/testfromgit.log"
+              run: ssh -vvv -i kyagi_id_rsa_nopass -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $SERVER_NAME 'ssh -i ~/.ssh/id_rsa_nopass universal@dev73.ukw.jp "hostname"'
               env:
                 SERVER_NAME: ${{ secrets.DEPLOY_SERVER }}
