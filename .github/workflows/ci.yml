@@ -1,4 +1,4 @@
-name: SSH-TEST
+name: SSH-FOR-UKENV
 on: push
 
 jobs:
