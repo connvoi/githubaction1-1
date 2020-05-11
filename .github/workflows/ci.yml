@@ -3,7 +3,7 @@ on: push
 
 jobs:
     build:
-        name: ssh test
+        name: ssh test for ukenv
         runs-on: ubuntu-latest
         steps:
             - name: making ssh config
