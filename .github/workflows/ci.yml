@@ -11,6 +11,7 @@ jobs:
               env:
                 SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
             - name: test ssh
-              run: ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no kyagi@$SERVER_NAME ’echo OK’
+              run: ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p $SERVER_PORT kyagi@$SERVER_NAME ’echo OK’
               env:
                 SERVER_NAME: ${{ secrets.SERVER_IP }}
+                SERVER_PORT: ${{ secrets.SERVER_PORT }}
