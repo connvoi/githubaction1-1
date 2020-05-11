@@ -3,7 +3,7 @@ on: push
 
 jobs:
     build:
-        name: Greeting
+        name: ssh test
         runs-on: ubuntu-latest
         steps:
             - name: making ssh keys
