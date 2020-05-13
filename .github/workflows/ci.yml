@@ -10,6 +10,8 @@ jobs:
               run: echo "$PROXY_SSH_PRIVATE_KEY" > secret && chmod 600 secret
               env:
                 PROXY_SSH_PRIVATE_KEY: ${{ secrets.PROXY_SSH_PRIVATE_KEY }}
+            - name: checkout master
+              uses: actions/checkout@master
             - name: print directory
               run: ls
             - name: print directory detail
