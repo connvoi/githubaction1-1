@@ -13,10 +13,12 @@ jobs:
             - name: checkout master
               uses: actions/checkout@master
               with: 
-                path: source
-            - name: print directory
-              run: ls source
-            - name: print directory detail
-              run: pwd
+                path: demo
+            - name:  maker tarball
+              run: tar -zcf demo.tar.gz demo
+            - name: current directory detail
+              run: ls 
+            - name: scp tarball
+              run: scp -i secret -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no demo.tar.gz kyagi@proxy1.ukw.jp:demo.tar.gz
 #            - name: test ssh
 #              run: ssh -i secret -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no kyagi@proxy1.ukw.jp 'ssh -i ~/.ssh/id_rsa_nopass universal@dev73.ukw.jp "hostname"'
