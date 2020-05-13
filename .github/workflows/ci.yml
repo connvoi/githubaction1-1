@@ -11,8 +11,9 @@ jobs:
               env:
                 PROXY_SSH_PRIVATE_KEY: ${{ secrets.PROXY_SSH_PRIVATE_KEY }}
             - name: checkout master
-              uses: actions/checkout@master
+              uses: actions/checkout@v2
               with: 
+                ref: master
                 path: source
             - name:  maker tarball
               run: tar -zcf demo.tar.gz -C source
