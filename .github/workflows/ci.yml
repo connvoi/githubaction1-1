@@ -15,7 +15,7 @@ jobs:
               with: 
                 path: source
             - name: print directory
-              run: ls
+              run: ls source
             - name: print directory detail
               run: pwd
 #            - name: test ssh
