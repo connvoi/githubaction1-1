@@ -16,7 +16,7 @@ jobs:
                 ref: master
                 path: source
             - name:  maker tarball
-              run: tar -zcvf test.tar.gz -C source --exclude "\.git/*" --exclude "\.github/*" .
+              run: tar --exclude "\.git/*" --exclude "\.github/*" zcvf test.tar.gz -C source .
             - name: current directory detail
               run: ls 
             - name: scp tarball
