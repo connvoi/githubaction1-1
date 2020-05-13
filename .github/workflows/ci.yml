@@ -16,10 +16,10 @@ jobs:
                 ref: master
                 path: source
             - name:  maker tarball
-              run: tar --exclude ".git/*" --exclude ".github/*" -zcf demo.tar.gz -C source .
+              run: tar -zcvf test.tar.gz -C source --exclude ".git/*" --exclude ".github/*" .
             - name: current directory detail
               run: ls 
             - name: scp tarball
-              run: scp -i secret -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no demo.tar.gz kyagi@proxy1.ukw.jp:demo.tar.gz
+              run: scp -i secret -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no test.tar.gz kyagi@proxy1.ukw.jp:test.tar.gz
 #            - name: test ssh
 #              run: ssh -i secret -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no kyagi@proxy1.ukw.jp 'ssh -i ~/.ssh/id_rsa_nopass universal@dev73.ukw.jp "hostname"'
