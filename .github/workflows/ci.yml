@@ -7,8 +7,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: making proxy ssh key
-              run: echo "$PROXY_SSH_PRIVATE_KEY" > kyagi_id_rsa_nopass && chmod 600 kyagi_id_rsa_nopass
+              run: echo "$PROXY_SSH_PRIVATE_KEY" > secret && chmod 600 secret
               env:
                 PROXY_SSH_PRIVATE_KEY: ${{ secrets.PROXY_SSH_PRIVATE_KEY }}
-            - name: test ssh
-              run: ssh -i kyagi_id_rsa_nopass -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no kyagi@proxy1.ukw.jp 'ssh -i ~/.ssh/id_rsa_nopass universal@dev73.ukw.jp "hostname"'
+            - name: print directory
+              run: ls
+#            - name: test ssh
+#              run: ssh -i secret -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no kyagi@proxy1.ukw.jp 'ssh -i ~/.ssh/id_rsa_nopass universal@dev73.ukw.jp "hostname"'
